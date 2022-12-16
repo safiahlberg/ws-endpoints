@@ -1,0 +1,13 @@
+package com.wixia.endpoints;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class WsEndpointsApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(WsEndpointsApplication.class, args);
+	}
+
+}
