@@ -15,10 +15,10 @@
         </xsd:schema>
     </types>
     <message name="GetEchoInput">
-        <part name="body" element="msd1:GetEchoRequest"/>
+        <part name="body" element="msd1:getEcho"/>
     </message>
     <message name="GetEchoOutput">
-        <part name="body" element="msd1:GetEchoResponse"/>
+        <part name="body" element="msd1:getEchoResponse"/>
     </message>
     <portType name="EchoPortType">
         <operation name="GetEcho">

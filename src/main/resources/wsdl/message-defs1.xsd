@@ -3,14 +3,14 @@
         targetNamespace="http://www.wixia.com/wsendpoints/schema/message-defs1"
         elementFormDefault="qualified"
         version="1.0">
-    <element name="GetEchoRequest">
+    <element name="getEcho">
         <complexType>
             <sequence>
                 <element name="message" type="string" />
             </sequence>
         </complexType>
     </element>
-    <element name="GetEchoResponse">
+    <element name="getEchoResponse">
         <complexType>
             <sequence>
                 <element name="responseMessage" type="string" />

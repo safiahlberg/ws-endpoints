@@ -26,7 +26,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean(servlet, "/ws/*");
     }
 
-    @Bean(name = "Echo")
+    @Bean(name = "ServiceOne") // This name sets the url part of the wsdl, i.e. /ws/ServiceOne.wsdl
     public Wsdl11Definition defaultWsdl11Definition() {
         SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition(
                 new ClassPathResource("/wsdl/ServiceOne.wsdl"));
