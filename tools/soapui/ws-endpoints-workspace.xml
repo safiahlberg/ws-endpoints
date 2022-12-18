@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-workspace name="ws-endpoints" soapui-version="5.7.0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:project name="ServiceOne">/home/safi/project/java/ws-endpoints/tools/soapui/ServiceOne-soapui-project.xml</con:project>
+  <con:project name="ServiceTwo">/home/safi/project/java/ws-endpoints/tools/soapui/ServiceTwo-soapui-project.xml</con:project>
+</con:soapui-workspace>

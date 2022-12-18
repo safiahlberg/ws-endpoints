@@ -8,11 +8,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
-import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 import org.springframework.ws.wsdl.wsdl11.Wsdl11Definition;
-import org.springframework.xml.xsd.SimpleXsdSchema;
-import org.springframework.xml.xsd.XsdSchema;
 
 @EnableWs
 @Configuration
@@ -26,26 +23,30 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean(servlet, "/ws/*");
     }
 
-    @Bean(name = "ServiceOne") // This name sets the url part of the wsdl, i.e. /ws/ServiceOne.wsdl
-    public Wsdl11Definition defaultWsdl11Definition() {
+    /**
+     * Exposes the ServiceOne WSDL on
+     * <a href="/ws/ServiceOne.wsdl">/ws/ServiceOne.wsdl</a>
+     *
+     * @return the WSDL definition
+     */
+    @Bean(name = "ServiceOne")
+    public Wsdl11Definition serviceOneWsdl11Definition() {
         SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition(
                 new ClassPathResource("/wsdl/ServiceOne.wsdl"));
         return wsdl11Definition;
     }
 
-/*    @Bean(name = "Echo")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema getEchoSchema) {
-        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("GetEcho");
-        wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace(ServiceOneEndpoint.NAMESPACE_URI);
-
+    /**
+     * Exposes the ServiceTwo WSDL on
+     * <a href="/ws/ServiceTwo.wsdl">/ws/ServiceTwo.wsdl</a>
+     *
+     * @return the WSDL definition
+     */
+    @Bean(name = "ServiceTwo")
+    public Wsdl11Definition serviceTwoWsdl11Definition() {
+        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition(
+                new ClassPathResource("/wsdl/ServiceTwo.wsdl"));
         return wsdl11Definition;
     }
 
-    @Bean
-    public XsdSchema getEchoSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("wsdl/message-defs1.xsd"));
-    }
- */
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="1ded9210-b0b5-4340-86f3-3aef4bfc39c6" activeEnvironment="Default" name="ServiceTwo" resourceRoot="" soapui-version="5.7.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="2974ad95-b70e-4183-a43b-b4a4201ff7ca" wsaVersion="NONE" name="MessageSoapBinding" type="wsdl" bindingName="{http://www.wixia.com/wsendpoints/servicetwo}MessageSoapBinding" soapVersion="1_1" anonymous="optional" definition="file:/home/safi/project/java/ws-endpoints/src/main/resources/wsdl/ServiceTwo.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/home/safi/project/java/ws-endpoints/src/main/resources/wsdl/ServiceTwo.wsdl"><con:part><con:url>file:/home/safi/project/java/ws-endpoints/src/main/resources/wsdl/ServiceTwo.wsdl</con:url><con:content><![CDATA[<definitions name="SchemaOne" targetNamespace="http://www.wixia.com/wsendpoints/servicetwo" xmlns:tns="http://www.wixia.com/wsendpoints/servicetwo" xmlns:msd2="http://www.wixia.com/wsendpoints/schema/message-defs2" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <documentation>version 1.0</documentation>
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://www.wixia.com/wsendpoints/schema/message-defs2" schemaLocation="message-defs2.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="GetTheMessageInput">
+    <part name="body" element="msd2:getTheMessage"/>
+  </message>
+  <message name="GetTheMessageOutput">
+    <part name="body" element="msd2:getTheMessageResponse"/>
+  </message>
+  <portType name="MessagePortType">
+    <operation name="GetTheMessage">
+      <input message="tns:GetTheMessageInput"/>
+      <output message="tns:GetTheMessageOutput"/>
+    </operation>
+  </portType>
+  <binding name="MessageSoapBinding" type="tns:MessagePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetTheMessage">
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="MessageService">
+    <documentation>A simple Message service</documentation>
+    <port name="MessagePort" binding="tns:MessageSoapBinding">
+      <soap:address location="http://wixia.com/message"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/home/safi/project/java/ws-endpoints/src/main/resources/wsdl/message-defs2.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://www.wixia.com/wsendpoints/schema/message-defs2" elementFormDefault="qualified" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="getTheMessage">
+    <complexType>
+      <sequence>
+        <element name="message" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="getTheMessageResponse">
+    <complexType>
+      <sequence>
+        <element name="responseMessage" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/ws/ServiceOne</con:endpoint><con:endpoint>http://wixia.com/message</con:endpoint></con:endpoints><con:operation id="d5148374-cb47-4b65-90fd-c87c02f7f719" isOneWay="false" action="" name="GetTheMessage" bindingOperationName="GetTheMessage" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e85ed66b-23fc-4a5c-8918-5c4019927056" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws/ServiceOne</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mes="http://www.wixia.com/wsendpoints/schema/message-defs2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mes:getTheMessage>
+         <mes:message>Calling with endpoint: http://localhost:8080/ws/ServiceOne</mes:message>
+      </mes:getTheMessage>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.wixia.com/wsendpoints/servicetwo/MessagePortType/GetTheMessageRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

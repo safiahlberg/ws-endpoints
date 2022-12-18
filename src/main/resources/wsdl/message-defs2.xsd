@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.wixia.com/wsendpoints/schema/message-defs2"
+        elementFormDefault="qualified"
+        version="1.0">
+    <element name="getTheMessage">
+        <complexType>
+            <sequence>
+                <element name="message" type="string" />
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getTheMessageResponse">
+        <complexType>
+            <sequence>
+                <element name="responseMessage" type="string" />
+            </sequence>
+        </complexType>
+    </element>
+</schema>

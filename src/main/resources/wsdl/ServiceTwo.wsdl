@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions
+        xmlns:tns="http://www.wixia.com/wsendpoints/servicetwo"
+        xmlns:msd2="http://www.wixia.com/wsendpoints/schema/message-defs2"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        name="SchemaOne"
+        targetNamespace="http://www.wixia.com/wsendpoints/servicetwo">
+    <documentation>version 1.0</documentation>
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://www.wixia.com/wsendpoints/schema/message-defs2"
+                        schemaLocation="message-defs2.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="GetTheMessageInput">
+        <part name="body" element="msd2:getTheMessage"/>
+    </message>
+    <message name="GetTheMessageOutput">
+        <part name="body" element="msd2:getTheMessageResponse"/>
+    </message>
+    <portType name="MessagePortType">
+        <operation name="GetTheMessage">
+            <input message="tns:GetTheMessageInput"/>
+            <output message="tns:GetTheMessageOutput"/>
+        </operation>
+    </portType>
+    <binding name="MessageSoapBinding" type="tns:MessagePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="GetTheMessage">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="MessageService">
+        <documentation>A simple Message service</documentation>
+        <port name="MessagePort" binding="tns:MessageSoapBinding">
+            <soap:address location="http://wixia.com/message"/>
+        </port>
+    </service>
+</definitions>

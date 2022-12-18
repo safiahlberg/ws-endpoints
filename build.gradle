@@ -54,12 +54,19 @@ tasks.register('wsimport') {
 					classname: 'com.sun.tools.ws.ant.WsImport',
 					classpath: configurations.jaxwsTools.asPath
 			)
-		wsimport(
-				keep: true,
-				sourcedestdir: destDir,
-				xnocompile: true,
-				wsdl: "${wsdlDir}/ServiceOne.wsdl") {
-					xjcarg(value: "-XautoNameResolution")
+			wsimport(
+					keep: true,
+					sourcedestdir: destDir,
+					xnocompile: true,
+					wsdl: "${wsdlDir}/ServiceOne.wsdl") {
+						xjcarg(value: "-XautoNameResolution")
+				}
+			wsimport(
+					keep: true,
+					sourcedestdir: destDir,
+					xnocompile: true,
+					wsdl: "${wsdlDir}/ServiceTwo.wsdl") {
+				xjcarg(value: "-XautoNameResolution")
 			}
 		}
 	}

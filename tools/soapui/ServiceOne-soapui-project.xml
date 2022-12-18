@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="3f206980-45dc-458c-86b6-ded8a62c4a6e" activeEnvironment="Default" name="ServiceOne" resourceRoot="" soapui-version="5.7.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="81b79c0e-9b65-4cfc-9625-dd7424264e43" wsaVersion="NONE" name="EchoSoapBinding" type="wsdl" bindingName="{http://www.wixia.com/wsendpoints/serviceone}EchoSoapBinding" soapVersion="1_1" anonymous="optional" definition="file:/home/safi/project/java/ws-endpoints/src/main/resources/wsdl/ServiceOne.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/home/safi/project/java/ws-endpoints/src/main/resources/wsdl/ServiceOne.wsdl"><con:part><con:url>file:/home/safi/project/java/ws-endpoints/src/main/resources/wsdl/ServiceOne.wsdl</con:url><con:content><![CDATA[<definitions name="SchemaOne" targetNamespace="http://www.wixia.com/wsendpoints/serviceone" xmlns:tns="http://www.wixia.com/wsendpoints/serviceone" xmlns:msd1="http://www.wixia.com/wsendpoints/schema/message-defs1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <documentation>version 1.0</documentation>
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://www.wixia.com/wsendpoints/schema/message-defs1" schemaLocation="message-defs1.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="GetEchoInput">
+    <part name="body" element="msd1:getEcho"/>
+  </message>
+  <message name="GetEchoOutput">
+    <part name="body" element="msd1:getEchoResponse"/>
+  </message>
+  <portType name="EchoPortType">
+    <operation name="GetEcho">
+      <input message="tns:GetEchoInput"/>
+      <output message="tns:GetEchoOutput"/>
+    </operation>
+  </portType>
+  <binding name="EchoSoapBinding" type="tns:EchoPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetEcho">
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="EchoService">
+    <documentation>A simple Echo service</documentation>
+    <port name="EchoPort" binding="tns:EchoSoapBinding">
+      <soap:address location="http://wixia.com/echo"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/home/safi/project/java/ws-endpoints/src/main/resources/wsdl/message-defs1.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://www.wixia.com/wsendpoints/schema/message-defs1" elementFormDefault="qualified" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="getEcho">
+    <complexType>
+      <sequence>
+        <element name="message" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="getEchoResponse">
+    <complexType>
+      <sequence>
+        <element name="responseMessage" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/ws/ServiceOne</con:endpoint><con:endpoint>http://wixia.com/echo</con:endpoint></con:endpoints><con:operation id="abdc76e2-d437-465d-8390-05147d06f98f" isOneWay="false" action="" name="GetEcho" bindingOperationName="GetEcho" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8737788d-84d7-462d-840e-c39a32770abe" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws/ServiceOne</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mes="http://www.wixia.com/wsendpoints/schema/message-defs1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mes:getEcho>
+         <mes:message>Input test message</mes:message>
+      </mes:getEcho>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.wixia.com/wsendpoints/serviceone/EchoPortType/GetEchoRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
