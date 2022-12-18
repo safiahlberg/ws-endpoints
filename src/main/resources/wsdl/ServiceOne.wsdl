@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions
+        xmlns:tns="http://www.wixia.com/wsendpoints/serviceone"
+        xmlns:msd1="http://www.wixia.com/wsendpoints/schema/message-defs1"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        name="SchemaOne"
+        targetNamespace="http://www.wixia.com/wsendpoints/serviceone">
+    <documentation>version 1.0</documentation>
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://www.wixia.com/wsendpoints/schema/message-defs1"
+                        schemaLocation="message-defs1.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="GetEchoInput">
+        <part name="body" element="msd1:GetEchoRequest"/>
+    </message>
+    <message name="GetEchoOutput">
+        <part name="body" element="msd1:GetEchoResponse"/>
+    </message>
+    <portType name="EchoPortType">
+        <operation name="GetEcho">
+            <input message="tns:GetEchoInput"/>
+            <output message="tns:GetEchoOutput"/>
+        </operation>
+    </portType>
+    <binding name="EchoSoapBinding" type="tns:EchoPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="GetEcho">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="EchoService">
+        <documentation>A simple Echo service</documentation>
+        <port name="EchoPort" binding="tns:EchoSoapBinding">
+            <soap:address location="http://wixia.com/echo"/>
+        </port>
+    </service>
+</definitions>

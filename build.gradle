@@ -9,6 +9,9 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
 configurations {
+	// JAX-WS Tools
+	jaxwsTools
+
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
@@ -19,6 +22,15 @@ repositories {
 }
 
 dependencies {
+	// https://stackoverflow.com/questions/49795433/gradle-wsimport
+	// JAX-WS wsimport and other tools
+	jaxwsTools 'com.sun.xml.ws:jaxws-tools:4.0.0'
+	// JAX-WS, JAXB dependencies
+	jaxwsTools 'jakarta.xml.ws:jakarta.xml.ws-api:4.0.0'
+	jaxwsTools 'jakarta.activation:jakarta.activation-api:2.1.0'
+	jaxwsTools 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+	jaxwsTools 'jakarta.jws:jakarta.jws-api:3.0.0'
+
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -28,4 +40,39 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+tasks.register('wsimport') {
+	description 'This runs the wsimport task and creates the JAX-WS artifacts'
+	ext.destDir = file("${buildDir}/generated-sources/jaxws")
+	ext.wsdlDir = file("${projectDir}/src/main/resources/wsdl")
+	doLast {
+		ant {
+			sourceSets.main.output.classesDirs.inits()
+			destDir.mkdirs()
+			taskdef(name: 'wsimport',
+					classname: 'com.sun.tools.ws.ant.WsImport',
+					classpath: configurations.jaxwsTools.asPath
+			)
+		wsimport(
+				keep: true,
+				sourcedestdir: destDir,
+				xnocompile: true,
+				wsdl: "${wsdlDir}/ServiceOne.wsdl") {
+					xjcarg(value: "-XautoNameResolution")
+			}
+		}
+	}
+}
+
+tasks.withType(JavaCompile) {
+	compileTask -> compileTask.dependsOn wsimport
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir "${buildDir}/generated-sources/jaxws"
+		}
+	}
 }
